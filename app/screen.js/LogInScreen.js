@@ -5,6 +5,24 @@ const LogInScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const HandleSubmit = () => { //確認欄位都有填寫
+    if (!Date || !Category || !Amount || !TransactionType) {
+      Alert.alert('error');
+      return;
+    }
+
+    const entryData = {
+        Dateate,
+        Category,
+        TransactionType,
+        Amount: parseFloat(Amount),
+    }
+
+    console.log(entryData);// debug 用的，後面再移除
+
+    navigation.navigate('HomeScreen');
+};
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -41,6 +59,20 @@ const LogInScreen = ({ navigation }) => {
             }}
           />
         </View>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Sign up"
+            onPress={() => {
+              if (!Account) {
+                alert('Please fill in both username and password.');
+                return;
+              }
+              navigation.navigate('SignupScreen');
+            }}
+          />
+        </View>
+
       </ScrollView>
     </KeyboardAvoidingView>
   );
